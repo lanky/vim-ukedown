@@ -1,1 +1,1 @@
-autocommand BufRead,BufNewFile *.udn setfiletype ukedown 
+au BufRead,BufNewFile *.udn setfiletype ukedown 
