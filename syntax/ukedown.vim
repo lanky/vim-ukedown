@@ -18,7 +18,7 @@ syntax match UdnBackingVox '([^)#]\+)'
 " syntax match chordName '(\(Cm\|Eb\|Ab\|G7\|Db\|D\))'
 " this is horrible, but still...
 "                        | root       |  | 7 etc|   | voicing                    | number | alternate root |
-syntax match UdnChord '([ABCDEFG][b#]\=\(\d\+\)\=\(m\|maj\|aug\|dim\|sus\|add\)\=\(\d\)\=/\=\([ABCDEFG][b#]\=\)\=)'
+syntax match UdnChord '([ABCDEFG][b#]\=\(\d\+\)\=\(m\|maj\|aug\|dim\|sus\|add\)\=\(\d\)\=/\=\([ABCDEFG][b#]\=\)\=i\*\=)'
 " performance notes etc, anything at all enclosed in curly braces {}
 syntax match UdnNotes '{[^#)]\+}'
 syntax match UdnMetadata '^;.*'
@@ -34,3 +34,4 @@ hi UdnChord         cterm=bold   ctermfg=Magenta term=bold
 hi UdnBackingVox    cterm=italic ctermfg=Gray
 hi UdnMetadata      cterm=italic ctermfg=yellow
 hi UdnBoxOut        cterm=bold
+hi UdnNotes         cterm=bold   ctermfg=Blue
