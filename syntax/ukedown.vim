@@ -11,13 +11,12 @@ endif
 " headers are easy, anything in square brackets
 syntax match UdnSectionHeader '\[.*\]'
 " backing vox are tricky, anything in parens that is not a chord.
-" this might need a rethink
-syntax match UdnBackingVox '([^)#]\+)'
+" but of course they can theoretically contain chords too!
+syntax match UdnBackingVox '(.\+)' contains=UdnChord
 " chords are anything matching our chord regex, inside parentheses
-" syntax match chordName '([ABCDEFG][b#]\?\(m\|maj\|min\|sus\|aug\|dim\|add\)\?\(\d\)*\(/[ABCDEFG][#b]\?\))'
-" syntax match chordName '(\(Cm\|Eb\|Ab\|G7\|Db\|D\))'
+" this is overly simplistic as it currently doesn't cover (e.g) Dmaj7sus4
 " this is horrible, but still...
-"                        | root       |  | 7 etc|   | voicing                    | number | alternate root |
+"                        | root     |    | 7 etc| voicing                      | number | alternate root |
 syntax match UdnChord '([ABCDEFG][b#]\=\(\d\+\)\=\(m\|maj\|aug\|dim\|sus\|add\)\=\(\d\)\=/\=\([ABCDEFG][b#]\=\)\=\*\=)'
 " performance notes etc, anything at all enclosed in curly braces {}
 syntax match UdnNotes '{[^#)]\+}'
@@ -29,9 +28,9 @@ syntax match UdnBoxOut '^|.*|\=$' contains=ALLBUT,UdnBoxOut
 
 let b:current_syntax = "udn"
 
-hi UdnSectionHeader cterm=bold   ctermfg=cyan term=bold
-hi UdnChord         cterm=bold   ctermfg=Magenta term=bold
-hi UdnBackingVox    cterm=italic ctermfg=Gray
+hi UdnSectionHeader cterm=bold   ctermfg=Cyan guifg=Cyan term=bold
+hi UdnChord         cterm=bold   ctermfg=Magenta guifg=Cyan term=bold
+hi UdnBackingVox    cterm=italic term=italic
 hi UdnMetadata      cterm=italic ctermfg=yellow
-hi UdnBoxOut        cterm=bold
+hi UdnBoxOut        cterm=bold   term=bold
 hi UdnNotes         cterm=bold   ctermfg=Blue
